@@ -1,0 +1,11 @@
+[groups.default.rules.groups_read]
+template = "collection('groups').anyRead()"
+
+[groups.default.rules.locations_read]
+template = "collection('locations').anyRead()"
+
+[groups.default.rules.groups_write]
+template = "collection('groups').anyWrite()"
+
+[groups.default.rules.locations_write]
+template = "collection('locations').anyWrite()"
