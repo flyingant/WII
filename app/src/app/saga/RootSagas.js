@@ -20,7 +20,8 @@ import {
     updateProfile,
     createGroup,
     createGroupCompleted,
-    watchingGroup
+    watchingGroup,
+    watchingLocation
 } from '../actions/RootActions';
 import {
     busy,
@@ -49,7 +50,7 @@ function* handleShowMessage() {
 }
 
 function* handleUpdateCurrentLocation() {
-    yield put(showMessage({message: 'Updating current position ...'}));
+    yield put(showMessage({message: 'Updating location...'}));
     let location = yield call(map.updateCurrentLocation);
     yield put(updateCurrentLocationCompleted(location));
     const profile = yield select(getProfile);
@@ -60,7 +61,8 @@ function* handleSearchGroup({payload}) {
     yield put(busy());
     let group = yield call(db.searchGroup, payload.groupTag);
     if (group) {
-        yield put(watchingGroup(group))
+        yield put(watchingGroup(group));
+        yield put(watchingLocation());
     } else {
         yield put(createGroup({groupTag: payload.groupTag}))
     }
@@ -71,8 +73,9 @@ function* handleCreateGroup({payload}) {
     yield put(busy());
     let group = yield call(db.createGroup, payload.groupTag);
     if (group) {
-        yield put(createGroupCompleted(group))
-        yield put(watchingGroup(group))
+        yield put(createGroupCompleted(group));
+        yield put(watchingGroup(group));
+        yield put(watchingLocation());
     } else {
         yield put(showMessage({message: 'Create group failed, Please try again!'}));
     }
@@ -80,7 +83,6 @@ function* handleCreateGroup({payload}) {
 }
 
 function* handleWatchingGroup({payload}) {
-    yield put(showMessage({message: 'Start watching your location ...'}));
     yield call(db.watchGroup, payload);
 }
 

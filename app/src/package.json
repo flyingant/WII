@@ -1,7 +1,7 @@
 {
-  "name": "web-static-core",
+  "name": "wii",
   "version": "0.0.1",
-  "description": "FlyingAnt's Static Core Code",
+  "description": "The app - WII - Where is it?",
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.5",

@@ -14,7 +14,7 @@ const uuid = utils.uuid();
 const DEFAULT_APP_STATE = {
     ref: 'map', // map container default reference
     group_id: '',
-    group_tag: '#',
+    group_tag: '',
     profile_id: uuid,
     profile_name: 'Human_' + uuid.slice(0, 5),
     profile_lat: 0,

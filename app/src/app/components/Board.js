@@ -23,6 +23,10 @@ class Board extends React.Component {
         this.onProfileNameChanged = this.onProfileNameChanged.bind(this);
     }
 
+    componentDidMount() {
+
+    }
+
     onEditingTagText(event) {
         this.setState({
             tag: event.target.value
