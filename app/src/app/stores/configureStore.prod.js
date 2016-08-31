@@ -16,8 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = compose(
     applyMiddleware(LocalstorageMiddleware),
-    applyMiddleware(thunk, sagaMiddleware),
-    persistState()
+    applyMiddleware(thunk, sagaMiddleware)
 );
 
 export default function configureStore(initialState) {
