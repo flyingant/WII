@@ -11,7 +11,7 @@
   .locationBtn {
     position: absolute;
     top: 6px;
-    left: 6;
+    right: 6px;
     padding: 12px;
     cursor: pointer;
     z-index: 200;
@@ -68,6 +68,26 @@
     }
   }
 
+    ::-webkit-input-placeholder {
+      font-size: large;
+      color:#e3e3e3;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      font-size: large;
+      color:#e3e3e3; 
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      font-size: large;
+      color:#e3e3e3;
+    }
+
+    :-ms-input-placeholder {  
+      font-size: large;
+      color:#e3e3e3;
+    }
+
   .boardBtn {
     position: absolute;
     top: 6px;
@@ -91,13 +111,13 @@
 
   .profileBtn {
     position: absolute;
-    bottom: -58px;
-    right: 0;
+    top: 6px;
+    left: 6;
     padding: 10px;
     border-radius: 30px;
     cursor: pointer;
     z-index: 200;
-    background-image: linear-gradient(to bottom, #ffffff, #eee);
+    background-color: #eeeeee;
 
     .profileIcon {
       width: 25px;

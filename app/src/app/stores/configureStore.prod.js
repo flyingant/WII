@@ -5,6 +5,8 @@ import rootReducer from '../reducers/Reducers';
 import createSagaMiddleware from 'redux-saga';
 import sagas from '../saga/RootSagas';
 
+import LocalstorageMiddleware from '../middleware/LocalstorageMiddleware';
+
 const reducer = combineReducers({
     root: rootReducer
 });
@@ -13,7 +15,9 @@ const reducer = combineReducers({
 const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = compose(
-    applyMiddleware(thunk, sagaMiddleware)
+    applyMiddleware(LocalstorageMiddleware),
+    applyMiddleware(thunk, sagaMiddleware),
+    persistState()
 );
 
 export default function configureStore(initialState) {

@@ -50,7 +50,7 @@ function* handleShowMessage() {
 }
 
 function* handleUpdateCurrentLocation() {
-    yield put(showMessage({message: 'Updating location...'}));
+    yield put(showMessage({message: 'Updating current location...'}));
     let location = yield call(map.updateCurrentLocation);
     yield put(updateCurrentLocationCompleted(location));
     const profile = yield select(getProfile);

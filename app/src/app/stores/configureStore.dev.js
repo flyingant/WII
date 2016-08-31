@@ -8,6 +8,8 @@ import sagas from '../saga/RootSagas';
 
 import DevTools from '../dev/DevTools';
 
+import LocalstorageMiddleware from '../middleware/LocalstorageMiddleware';
+
 const reducer = combineReducers({
     root: rootReducer
 });
@@ -22,6 +24,7 @@ const logger = createLogger({
 const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = compose(
+    applyMiddleware(LocalstorageMiddleware),
     applyMiddleware(thunk, logger, sagaMiddleware),
     DevTools.instrument()
 );

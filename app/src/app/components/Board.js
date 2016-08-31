@@ -24,7 +24,7 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
-
+        
     }
 
     onEditingTagText(event) {
@@ -61,10 +61,12 @@ class Board extends React.Component {
 
     render() {
         let inputContainerStyle = this.state.editing ? styles.editing : styles.non_editing;
-        let inputText = this.state.editing ? this.state.tag : '#' + this.state.tag;
+        let inputText = this.state.editing ? this.state.tag : (this.state.tag ? '#' + this.state.tag : '');
         return (
             <div className={styles.board}>
-                <LocationButton watching={this.props.profile.watching} onLocationClicked={this.onLocationClicked}/>
+                <div className={styles.profileBtn} onClick={this.onToggleDisplayProfilePanel}>
+                    <div className={styles.profileIcon}></div>
+                </div>
                 <div className={inputContainerStyle}>
                     <span className={styles.hashTag}>#</span>
                     <input
@@ -72,15 +74,14 @@ class Board extends React.Component {
                         type="text"
                         onFocus={() => this.setState({editing: true})}
                         value={inputText}
+                        placeholder={"Seach hashtag"}
                         onChange={this.onEditingTagText}
                     />
                     {
                         this.state.editing ? <EnterButton onEnterClicked={this.onEnterClicked}/> :
-                            <ShareButton onShareClicked={this.onShareClicked}/>
+                            <LocationButton watching={this.props.profile.watching} onLocationClicked={this.onLocationClicked}/> 
+                            /*<ShareButton onShareClicked={this.onShareClicked}/> */
                     }
-                </div>
-                <div className={styles.profileBtn} onClick={this.onToggleDisplayProfilePanel}>
-                    <div className={styles.profileIcon}></div>
                 </div>
                 {
                     this.state.displayProfile ?

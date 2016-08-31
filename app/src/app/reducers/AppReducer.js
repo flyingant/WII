@@ -24,7 +24,17 @@ const DEFAULT_APP_STATE = {
 };
 
 function app(state, action) {
-    const currentState = state || Immutable.Map(DEFAULT_APP_STATE);
+    let currentState = {};
+    if (state) {
+        currentState = state
+    } else {
+        const local_state = localStorage.getItem('redux');
+        if(local_state) {
+            currentState = Immutable.Map(JSON.parse(local_state).app)
+        } else {
+            currentState = Immutable.Map(DEFAULT_APP_STATE)
+        }
+    }
     switch (action.type) {
         case UPDATE_CURRENT_LOCATION_COMPLETED:
             return currentState.merge({
