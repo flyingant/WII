@@ -21,6 +21,7 @@ class Board extends React.Component {
         this.onLocationClicked = this.onLocationClicked.bind(this);
         this.onToggleDisplayProfilePanel = this.onToggleDisplayProfilePanel.bind(this);
         this.onProfileNameChanged = this.onProfileNameChanged.bind(this);
+        this.onHandleKeyPress = this.onHandleKeyPress.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +38,12 @@ class Board extends React.Component {
         if (this.state.tag.length != 0) {
             this.setState({editing: false});
             this.props.onEnterGroupClicked({groupTag: this.state.tag});
+        }
+    }
+
+    onHandleKeyPress(e) {
+        if (e.key === 'Enter') {
+           this.onEnterClicked();
         }
     }
 
@@ -67,6 +74,7 @@ class Board extends React.Component {
                 <div className={styles.profileBtn} onClick={this.onToggleDisplayProfilePanel}>
                     <div className={styles.profileIcon}></div>
                 </div>
+                <div className={styles.profileName}>{this.props.profile.name}</div>
                 <div className={inputContainerStyle}>
                     <span className={styles.hashTag}>#</span>
                     <input
@@ -76,6 +84,7 @@ class Board extends React.Component {
                         value={inputText}
                         placeholder={"Seach hashtag"}
                         onChange={this.onEditingTagText}
+                        onKeyPress={this.onHandleKeyPress}
                     />
                     {
                         this.state.editing ? <EnterButton onEnterClicked={this.onEnterClicked}/> :

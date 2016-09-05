@@ -92,7 +92,7 @@ module.exports = {
                 member.marker.setMap(window.map);
             });
 
-            window.map.setFitView()
+            // window.map.setFitView()
 
         });
     },

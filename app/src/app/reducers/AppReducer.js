@@ -20,7 +20,7 @@ const DEFAULT_APP_STATE = {
     profile_lat: 0,
     profile_lng: 0,
     watching: false, // if current watching the location change
-    delay: 20
+    delay: 15
 };
 
 function app(state, action) {

@@ -13,7 +13,7 @@ class ProfilePanel extends React.Component {
             <div className={styles.profilePanel}>
                 <div className={styles.closeBtn} onClick={this.props.onHideProfilePanel}></div>
                 <div className={styles.avatar}></div>
-                <input className={styles.nameInput} ref="nameInput" type="text" value={this.props.profile.name} placeholder="Your Name"
+                <input className={styles.nameInput} ref="nameInput" maxLength="10" type="text" value={this.props.profile.name} placeholder="Your Name"
                        onChange={this.props.onProfileNameChanged}/>
             </div>
         );
