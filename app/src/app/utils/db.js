@@ -65,22 +65,23 @@ module.exports = {
             window.map.clearMap();
             let members = [];
             profiles.forEach((profile) => {
-                let marker = new AMap.Marker({
-                    icon: 'http://flyingant.oss-cn-hangzhou.aliyuncs.com/1472028532_10_who_human_you_confuse_man_male_behaviour.png-f69ce99e-0fd4-4a2f-9320-936ee0db3088.png',
-                    position: [profile.lng, profile.lat],
-                    draggable: true,
-                    cursor: 'move'
-                });
-                marker.content = profile.name;
-                marker.on('click', markerClick);
-
-                members.push(
-                    {
-                        id: profile.id,
-                        name: profile.name,
-                        marker: marker
-                    }
-                )
+                if (profile.last_updated && (new Date().getTime() - new Date(profile.last_updated).getTime()) / 1000 < 600) {
+                    let marker = new AMap.Marker({
+                        icon: 'http://flyingant.oss-cn-hangzhou.aliyuncs.com/1472028532_10_who_human_you_confuse_man_male_behaviour.png-f69ce99e-0fd4-4a2f-9320-936ee0db3088.png',
+                        position: [profile.lng, profile.lat],
+                        draggable: true,
+                        cursor: 'move'
+                    });
+                    marker.content = profile.name;
+                    marker.on('click', markerClick);
+                    members.push(
+                        {
+                            id: profile.id,
+                            name: profile.name,
+                            marker: marker
+                        }
+                    )
+                }
             });
 
             members.forEach((member) => {
@@ -105,7 +106,8 @@ module.exports = {
             id: data.profile_id,
             name: data.profile_name,
             lat: data.profile_lat,
-            lng: data.profile_lng
+            lng: data.profile_lng,
+            last_updated: new Date()
         });
     },
 
